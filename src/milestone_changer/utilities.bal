@@ -23,6 +23,40 @@ public function processRequest(json[] issues, string newMilestone) returns boole
     return true;
 }
 
+# Extract the milestone number from with the provided milestone name
+#
+# + milestoneName - Name of the milestone. 
+# + return - Milestone number or an error if there's an error occurred during the extraction. 
+public function extractMilestoneNumber(string milestoneName) returns @tainted string|error {
+
+    http:Request callBackRequest = new;
+    callBackRequest.addHeader("Authorization", ACCESS_TOKEN);
+
+    string url = "/repos/" + ORGANIZATION_NAME + "/" + REPOSITORY_NAME + "/milestones";
+
+    http:Response | error gitHubResponse = gitHubAPIEndpoint->get(<@untained>url, callBackRequest);
+
+    if (gitHubResponse is http:Response) {
+        if (gitHubResponse.statusCode == http:STATUS_OK) {
+            json|error jsonPayload = gitHubResponse.getJsonPayload();
+            if (jsonPayload is json) {
+                foreach json milestone in <json[]>jsonPayload {
+                    if (milestone.title.toString() == milestoneName) {
+                        return milestone.number.toString();
+                    }
+                }
+                return error("Could not find a milestone with the given milestone name.");
+            } else {
+                return error(jsonPayload.reason());
+            }
+        } else {
+            return error("Could not obtain the milestones of the specified repository.");
+        }
+    } else {
+        return error(gitHubResponse.reason());
+    }
+}
+
 
 # Updates the milestone of an issue.
 #
