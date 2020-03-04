@@ -13,4 +13,4 @@ You should have the following installed:
 - Open the cloned repository folder using VSCode.
 - Change the values of variables: `ORGANIZATION_NAME`, `REPOSITORY_NAME`, `ACCESS_TOKEN` located at the `constants.bal` file.
 - Run the program using the command using `ballerina run milestone_changer` on the root folder.
-- Send a `PUT` request to http://localhost:9090/github-services/update-issues/{old-milestone-number}/{new-milestone-number} using Postman.
+- Send a `PUT` request to http://localhost:9090/github-services/update-issues/{old-milestone-name}/{new-milestone-name} using Postman.
