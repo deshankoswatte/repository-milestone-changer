@@ -24,7 +24,7 @@ public function processRequest(json[] issues, string newMilestone) returns boole
 }
 
 
-# Updates the issue milestone.
+# Updates the milestone of an issue.
 #
 # + request - JSON request to be sent to the github API.
 # + issueNumber - Issue number of the issue to be updated. 

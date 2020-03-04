@@ -16,7 +16,7 @@ service githubService on servicesEndPoint {
         methods: ["PUT"],
         path: "/update-issues/{oldMilestone}/{newMilestone}"
     }
-    resource function retrieveAllIssuesFromRepository(http:Caller caller, http:Request request, string oldMilestone, string newMilestone) {
+    resource function updateIssues(http:Caller caller, http:Request request, string oldMilestone, string newMilestone) {
 
         http:Request callBackRequest = new;
         callBackRequest.addHeader("Authorization", ACCESS_TOKEN);
