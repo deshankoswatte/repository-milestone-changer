@@ -9,7 +9,8 @@ You should have the following installed:
 
 ### Run the program
 
-- Open the folder using VSCode.
+- Clone the repository to a place of your preference using the command `git clone https://github.com/deshankoswatte/repository-milestone-changer.git`.
+- Open the cloned repository folder using VSCode.
 - Change the values of variables: `ORGANIZATION_NAME`, `REPOSITORY_NAME`, `ACCESS_TOKEN` located at the `constants.bal` file.
 - Run the program using the command using `ballerina run milestone_changer` on the root folder.
 - Send a `PUT` request to http://localhost:9090/github-services/update-issues/{old-milestone-number}/{new-milestone-number} using Postman.
