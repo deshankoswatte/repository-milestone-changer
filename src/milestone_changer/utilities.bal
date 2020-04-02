@@ -1,11 +1,26 @@
 import ballerina/http;
 
+# Validates the received request.
+#
+# + request - Request which is received from the client. 
+# + return - Data of the request if it is a valid request.
+public function validateRequest(http:Request request) returns @tainted map<string>|error {
+
+    var formParams = request.getFormParams();
+
+    if (formParams is map<string>) {
+        return formParams;
+    } else {
+        return error("Form parameter are not in the valid format.");
+    }
+}
+
 # Processes the received request and update the issues.
 #
 # + issues - Issues with the specified milestone.
 # + newMilestone - New milestone to be assigned. 
 # + return - A boolean representing whether all the issues updated properly.
-public function processRequest(json[] issues, string newMilestone) returns boolean | error {
+public function processRequest(json[] issues, string newMilestone) returns boolean|error {
 
     foreach json issue in issues {
         string issueNumber = issue.number.toString();
@@ -34,7 +49,7 @@ public function extractMilestoneNumber(string milestoneName) returns @tainted st
 
     string url = "/repos/" + ORGANIZATION_NAME + "/" + REPOSITORY_NAME + "/milestones";
 
-    http:Response | error gitHubResponse = gitHubAPIEndpoint->get(<@untained>url, callBackRequest);
+    http:Response|error gitHubResponse = gitHubAPIEndpoint->get(<@untained>url, callBackRequest);
 
     if (gitHubResponse is http:Response) {
         if (gitHubResponse.statusCode == http:STATUS_OK) {
@@ -71,7 +86,7 @@ function updateIssue(json request, string issueNumber) returns boolean {
     string url = "/repos/" + ORGANIZATION_NAME + "/" + REPOSITORY_NAME + "/issues/" + issueNumber;
 
     callBackRequest.setJsonPayload(<@untained>request);
-    http:Response | error gitHubResponse = gitHubAPIEndpoint->patch(<@untained>url, callBackRequest);
+    http:Response|error gitHubResponse = gitHubAPIEndpoint->patch(<@untained>url, callBackRequest);
 
     if (gitHubResponse is http:Response) {
         if (gitHubResponse.statusCode == http:STATUS_OK) {

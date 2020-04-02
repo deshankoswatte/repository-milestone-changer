@@ -17,7 +17,7 @@
     </style>
   </head>
   <body>
-    <script lang="javascript">
+    <!-- <script lang="javascript">
 
       function putData() {
 
@@ -39,11 +39,14 @@
       	xhttp.open("PUT", "http://localhost:9090/milestone-changer-service/update-issues/" , true);
       	xhttp.send(JSON.stringify(updateObj));
       }
-    </script>
+    </script> -->
 
     <h2 class="jumbotron text-center">Issue Milestone Changer Service</h2>
     <div class="container">
-      <form>
+      <form
+        method="POST"
+        action="http://localhost:9090/milestone-changer-service/update-issues/"
+      >
         <div class="form-group">
           <label for="organization_name">Organization Name:</label>
           <input
@@ -98,7 +101,7 @@
           />
         </div>
 
-        <button class="btn-success" type="submit" onclick="putData()">
+        <button class="btn-success" type="submit">
           Submit
         </button>
         <button class="btn-primary" type="reset">Reset</button>
@@ -112,7 +115,10 @@
       </div>
 
       <br />
-      <div id="response" class="alert alert-info"></div>
+      <div id="response" class="alert alert-info">
+        <strong>Info!</strong> Only upto 100 issues can be updated at a given
+        time.
+      </div>
     </div>
   </body>
 </html>
