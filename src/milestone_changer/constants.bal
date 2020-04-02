@@ -6,4 +6,4 @@ const string ACCESS_TOKEN = "Bearer <token>";
 
 // Listner configurations.
 const int SERVICES_PORT = 9090;
-const string BASEPATH = "/github-services";
+const string BASEPATH = "/milestone-changer-service";
