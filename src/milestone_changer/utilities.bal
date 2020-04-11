@@ -22,20 +22,23 @@ public function validateRequest(http:Request request) returns @tainted map<strin
 # + return - A boolean representing whether all the issues updated properly.
 public function processRequest(json[] issues, string newMilestone) returns boolean|error {
 
-    foreach json issue in issues {
-        string issueNumber = issue.number.toString();
-        json request = {
-            "milestone": newMilestone
-        };
+    if (issues.length() > 0) {
+        foreach json issue in issues {
+            string issueNumber = issue.number.toString();
+            json request = {
+                "milestone": newMilestone
+            };
 
-        boolean updateStatus = updateIssue(request, issueNumber);
+            boolean updateStatus = updateIssue(request, issueNumber);
 
-        if (!updateStatus) {
-            return false;
+            if (!updateStatus) {
+                return false;
+            }
         }
+        return true;
+    } else {
+        return error("There are no issues with the specified milestone to be updated");
     }
-
-    return true;
 }
 
 # Extract the milestone number from with the provided milestone name
