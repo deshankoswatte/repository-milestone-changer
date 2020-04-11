@@ -3,8 +3,8 @@
 ## Table of Contents
 
 * [About the Project](#about-the-project)
-* [Try out the project](#try-out-the-project)
 * [Prerequisites](#prerequisites)
+* [Try out the project](#try-out-the-project)
 * [Contributing](#contributing)
 * [License](#license)
 
