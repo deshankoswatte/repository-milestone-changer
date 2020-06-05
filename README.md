@@ -10,7 +10,7 @@
 
 ## About the project
 
-API service which helps to change the milestones of a set of issues at once without manually changing the milestones by hand. A total of 100 issues can be modified at a time.
+API service which uses the GitHub API service to change the milestone of a set of issues at once. This was developed in order to elimate the process of manually updating the milestones one by one. _A total of 100 issues_ can be **modified at a time**.
 
 ## Prerequisites
 
@@ -22,7 +22,7 @@ You should have installed:
 - Clone the repository to a place of your preference using the command `git clone https://github.com/deshankoswatte/repository-milestone-changer.git`.
 - Open the cloned repository folder.
 - Run the program using the command using `milestone_changer_activate.sh` on the root folder.
-- Provide the values: Organization Name, Repository Name, Milestone Name to be changed, Milestone Name to be changed to and Your Access Token to the html form fields and click 'submit'.
+- Provide the values for: _Organization Name_, _Repository Name_, _Milestone Name to be changed_, _Milestone Name to be changed to_ and _Your Access Token_ to the html form fields and click 'submit'.
 
 ## Contributing
 
